@@ -1,9 +1,10 @@
 package com.example.shoppinglistapp.domain.usecases
 
 import com.example.shoppinglistapp.domain.models.ShopItem
+import com.example.shoppinglistapp.domain.repository.ShopListRepository
 
-class DeleteShopItemUseCase {
+class DeleteShopItemUseCase(private val shopListRepository: ShopListRepository) {
     fun deleteShopItem(shopItem: ShopItem) {
-        TODO()
+        shopListRepository.deleteShopItem(shopItem)
     }
 }
