@@ -1,13 +1,15 @@
-package com.example.shoppinglistapp.presentation
+package com.example.shoppinglistapp.presentation.shoplist.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.domain.models.ShopItem
+import com.example.shoppinglistapp.presentation.shoplist.callbacks.ShopItemDiffCallback
+import com.example.shoppinglistapp.presentation.shoplist.adapters.viewholders.ShopItemViewHolder
 import java.lang.RuntimeException
 
-class ShopListAdapter : ListAdapter<ShopItem,ShopItemViewHolder>(ShopItemDiffCallback()) {
+class ShopListAdapter : ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCallback()) {
 
     var onShopItemLongClickListener: ((ShopItem) -> Unit)? = null
     var onShopItemClickListener: ((ShopItem) -> Unit)? = null

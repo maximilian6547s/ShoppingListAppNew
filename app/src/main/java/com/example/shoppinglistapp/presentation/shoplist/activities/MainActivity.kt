@@ -1,4 +1,4 @@
-package com.example.shoppinglistapp.presentation
+package com.example.shoppinglistapp.presentation.shoplist.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -7,7 +7,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistapp.R
-import com.example.shoppinglistapp.domain.models.ShopItem
+import com.example.shoppinglistapp.presentation.shoplist.viewmodels.MainViewModel
+import com.example.shoppinglistapp.presentation.shoplist.adapters.ShopListAdapter
 
 class MainActivity : AppCompatActivity() {
 
