@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,9 +19,7 @@ import com.example.shoppinglistapp.presentation.shopdetails.activities.ShopItemA
 import com.example.shoppinglistapp.presentation.shopdetails.viewmodels.ShopItemViewModel
 import com.google.android.material.textfield.TextInputLayout
 
-class ShopItemFragment(
-
-) : Fragment() {
+class ShopItemFragment() : Fragment() {
 
     private lateinit var tilName: TextInputLayout
     private lateinit var tilCount: TextInputLayout
@@ -34,6 +33,7 @@ class ShopItemFragment(
     private var shopItemId: Int = ShopItem.UNDEFINED_ID
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Log.d("ShopItemFragment", "onCreate: ")
         super.onCreate(savedInstanceState)
         parseParams()
     }
