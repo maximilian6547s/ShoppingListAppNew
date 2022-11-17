@@ -17,6 +17,7 @@ import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.domain.models.ShopItem
 import com.example.shoppinglistapp.presentation.shopdetails.activities.ShopItemActivity
 import com.example.shoppinglistapp.presentation.shopdetails.viewmodels.ShopItemViewModel
+import com.example.shoppinglistapp.presentation.shoplist.activities.MainActivity
 import com.google.android.material.textfield.TextInputLayout
 
 class ShopItemFragment() : Fragment() {
@@ -74,7 +75,7 @@ class ShopItemFragment() : Fragment() {
             tilName.error = message
         }
         viewModel.shouldCloseScreen.observe(viewLifecycleOwner) {
-            activity?.onBackPressed()
+            (activity as MainActivity)?.onEditingFinished()
         }
     }
 
