@@ -16,7 +16,7 @@ import com.example.shoppinglistapp.presentation.shoplist.adapters.ShopListAdapte
 import com.example.shoppinglistapp.presentation.shoplist.viewmodels.MainViewModel
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
     private lateinit var viewModel: MainViewModel
     private lateinit var shopListAdapter: ShopListAdapter
@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun onEditingFinished() {
+    override fun onEditingFinished() {
         Toast.makeText(this, "Success", Toast.LENGTH_SHORT).show()
         supportFragmentManager.popBackStack()
     }
