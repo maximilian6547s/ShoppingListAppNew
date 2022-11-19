@@ -3,17 +3,10 @@ package com.example.shoppinglistapp.presentation.shopdetails.activities
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.widget.Button
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModelProvider
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.domain.models.ShopItem
-import com.example.shoppinglistapp.presentation.ShopItemFragment
-import com.example.shoppinglistapp.presentation.shopdetails.viewmodels.ShopItemViewModel
-import com.google.android.material.textfield.TextInputLayout
+import com.example.shoppinglistapp.presentation.shopdetails.fragments.ShopItemFragment
 
 class ShopItemActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
