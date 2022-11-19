@@ -2,9 +2,12 @@ package com.example.shoppinglistapp.presentation.shoplist.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.ListAdapter
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ItemShopDisabledBinding
+import com.example.shoppinglistapp.databinding.ItemShopEnabledBinding
 import com.example.shoppinglistapp.domain.models.ShopItem
 import com.example.shoppinglistapp.presentation.shoplist.callbacks.ShopItemDiffCallback
 import com.example.shoppinglistapp.presentation.shoplist.adapters.viewholders.ShopItemViewHolder
@@ -23,8 +26,9 @@ class ShopListAdapter : ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCa
             else -> throw RuntimeException("Unknown view type : $viewType")
         }
 
-        val binding = ItemShopDisabledBinding.inflate(
+        val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(parent.context),
+            layout,
             parent,
             false
         )
@@ -42,9 +46,16 @@ class ShopListAdapter : ListAdapter<ShopItem, ShopItemViewHolder>(ShopItemDiffCa
         binding.root.setOnClickListener {
             onShopItemClickListener?.invoke(shopItem)
         }
-        binding.tvName.text = shopItem.name
-        binding.tvCount.text = shopItem.count.toString()
-
+        when(binding) {
+            is ItemShopDisabledBinding -> {
+                binding.tvName.text = shopItem.name
+                binding.tvCount.text = shopItem.count.toString()
+            }
+            is ItemShopEnabledBinding -> {
+                binding.tvName.text = shopItem.name
+                binding.tvCount.text = shopItem.count.toString()
+            }
+        }
     }
 
     override fun getItemViewType(position: Int): Int {
