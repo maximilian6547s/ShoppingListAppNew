@@ -1,4 +1,4 @@
-package com.example.shoppinglistapp.data
+package com.example.shoppinglistapp.data.repositoryimpl
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
