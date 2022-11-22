@@ -10,6 +10,7 @@ import com.example.shoppinglistapp.data.models.ShopItemDbModel
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun shopListDao(): ShopListDao
+
     companion object {
 
         private var INSTANCE: AppDataBase? = null
@@ -28,9 +29,7 @@ abstract class AppDataBase : RoomDatabase() {
                     application,
                     AppDataBase::class.java,
                     DB_NAME
-                )
-                    .allowMainThreadQueries()
-                    .build()
+                ).build()
                 INSTANCE = db
                 return db
             }
