@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shoppinglistapp.R
 import com.example.shoppinglistapp.databinding.ActivityMainBinding
-import com.example.shoppinglistapp.presentation.shopdetails.fragments.ShopItemFragment
+import com.example.shoppinglistapp.presentation.ShopApplication
+import com.example.shoppinglistapp.presentation.ViewModelFactory
 import com.example.shoppinglistapp.presentation.shopdetails.activities.ShopItemActivity
+import com.example.shoppinglistapp.presentation.shopdetails.fragments.ShopItemFragment
 import com.example.shoppinglistapp.presentation.shoplist.adapters.ShopListAdapter
 import com.example.shoppinglistapp.presentation.shoplist.viewmodels.MainViewModel
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedListener {
 
@@ -20,13 +23,21 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
     private lateinit var shopListAdapter: ShopListAdapter
     private lateinit var binding: ActivityMainBinding
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as ShopApplication).component
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupRecyclerView()
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
         viewModel.shopList.observe(this) {
             shopListAdapter.submitList(it)
         }
@@ -45,7 +56,7 @@ class MainActivity : AppCompatActivity(), ShopItemFragment.OnEditingFinishedList
         supportFragmentManager.popBackStack()
     }
 
-    private fun isOnePaneMode():Boolean {
+    private fun isOnePaneMode(): Boolean {
         return binding.shopItemContainer == null
     }
 
